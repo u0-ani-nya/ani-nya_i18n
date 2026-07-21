@@ -1,7 +1,7 @@
 {
     "name": "u0-ani-nya/ani-nya_i18n",
     "description": "Auto translate discussions for Flarum",
-    "version": "1.0.0",
+    "version": "1.1.0-beta",
     "type": "flarum-extension",
     "keywords": ["flarum", "translation", "i18n"],
     "license": "AGPL-3.0-or-later",
