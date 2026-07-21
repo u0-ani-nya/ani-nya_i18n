@@ -1,0 +1,13 @@
+ani-nya-i18n:
+  admin:
+    page:
+      title: "自动翻译设置"
+      engine_label: "翻译引擎"
+      target_lang_label: "默认目标语言"
+      auto_translate_label: "启用自动翻译"
+      openai_key_label: "OpenAI API Key"
+      openai_model_label: "OpenAI 模型"
+      openai_base_url_label: "OpenAI Base URL"
+  forum:
+    translated_label: "翻译"
+    original_label: "原文"
