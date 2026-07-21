@@ -35,7 +35,7 @@ Libre is not tested due to is costs expensive.
 ## Installation
 
 ```bash
-composer require ani-nya/flarum-i18n
+composer require u0-ani-nya/ani-nya_i18n
 ```
 
 Then enable the extension in the Flarum admin dashboard.
