@@ -1,12 +1,22 @@
-# Ani-Nya i18n (Discussion & Post Translator for Flarum 2.0)
-
-
-> **Native Flarum 2.0+ Auto-Translation Extension** with built-in database caching. Translates discussions, post content, titles, user profiles, and shoutbox widgets seamlessly.
-
+# Ani-Nya i18n (Native Multilingual Discussion Translation for Flarum 2.0)
 [![Flarum 2.0 Compatible](https://img.shields.io/badge/Flarum-2.0%2B-brightgreen)](#)
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE)
 
-Auto translate discussions for Flarum 2.x. Translates post titles, content, and UI elements using multiple translation engines. Flarum basic elements is not translated due to we have community launage packs.
+Ani-Nya i18n is a **native** Flarum 2.0 extension that provides 
+AI-powered multilingual discussion translation.
+
+It automatically detects when a discussion or post language differs 
+from the user's preferred forum locale, generates a translated version,
+and displays it together with the original content.
+
+Unlike browser-based translation solutions, Ani-Nya i18n integrates with
+Flarum's API and Mithril rendering system, using database-backed
+translation caching to reduce API usage.
+
+
+
+
+
 
 ## Features
 
