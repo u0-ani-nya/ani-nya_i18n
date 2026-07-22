@@ -1,6 +1,34 @@
 import ExtensionPage from 'flarum/admin/components/ExtensionPage';
+import Button from 'flarum/common/components/Button';
 
 class TranslationSettingsPage extends ExtensionPage {
+  oninit(vnode) {
+    super.oninit(vnode);
+    this.discussionId = '';
+    this.loading = false;
+    this.message = '';
+  }
+
+  callAdmin(action, body = {}) {
+    this.loading = true;
+    this.message = '';
+    m.redraw();
+
+    app.request({
+      method: 'POST',
+      url: app.forum.attribute('apiUrl') + action,
+      body,
+    }).then((result) => {
+      this.loading = false;
+      this.message = JSON.stringify(result.data);
+      m.redraw();
+    }).catch((e) => {
+      this.loading = false;
+      this.message = 'Error: ' + e.message;
+      m.redraw();
+    });
+  }
+
   content() {
     return m('div', { className: 'I18nSettingsPage' },
       m('div', { className: 'container' },
@@ -120,7 +148,55 @@ class TranslationSettingsPage extends ExtensionPage {
           'No configuration needed. Uses Google Translate internal API (free, no key required). Rate limited (~100 req/min).'
         ),
 
-        this.submitButton()
+        this.submitButton(),
+
+        m('hr'),
+
+        m('h3', null, 'Manage Translations'),
+
+        m('div', { className: 'I18nAdminActions' },
+          m('div', { className: 'I18nAdminRow' },
+            Button.component({
+              className: 'Button Button--primary',
+              loading: this.loading,
+              onclick: () => this.callAdmin('/i18n/admin/clear-all'),
+            }, 'Clear All Translations'),
+            Button.component({
+              className: 'Button Button--primary',
+              loading: this.loading,
+              onclick: () => this.callAdmin('/i18n/admin/fill-all'),
+            }, 'Fill Missing Translations')
+          ),
+          m('div', { className: 'I18nAdminRow' },
+            m('input', {
+              className: 'FormControl',
+              type: 'number',
+              placeholder: 'Discussion ID',
+              value: this.discussionId,
+              oninput: (e) => { this.discussionId = e.target.value; },
+            }),
+            Button.component({
+              className: 'Button Button--danger',
+              loading: this.loading,
+              disabled: !this.discussionId,
+              onclick: () => this.callAdmin('/i18n/admin/clear-discussion', { discussion_id: Number(this.discussionId) }),
+            }, 'Clear'),
+            Button.component({
+              className: 'Button Button--primary',
+              loading: this.loading,
+              disabled: !this.discussionId,
+              onclick: () => this.callAdmin('/i18n/admin/fill-discussion', { discussion_id: Number(this.discussionId) }),
+            }, 'Fill')
+          ),
+          this.message ? m('div', { className: 'I18nAdminMessage' }, this.message) : null
+        ),
+
+        m('hr'),
+
+        m('div', { className: 'I18nCopyright' },
+          m('p', null, 'Plugin developed by ', m('a', { href: 'https://f.ani-nya.com', target: '_blank' }, 'https://f.ani-nya.com')),
+          m('p', null, 'BNB Chain: ', m('code', null, '0xEef952A66bd9116236E9C23Ca6f12272FA53c7Ce'))
+        )
       )
     );
   }

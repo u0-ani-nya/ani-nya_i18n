@@ -76,5 +76,9 @@ return [
         ->command(TranslateCommand::class),
 
     (new Extend\Routes('api'))
-        ->post('/i18n/translate', 'ani-nya-i18n.translate', \aniNya\I18n\Controller\TranslateController::class),
+        ->post('/i18n/translate', 'ani-nya-i18n.translate', \aniNya\I18n\Controller\TranslateController::class)
+        ->post('/i18n/admin/clear-all', 'ani-nya-i18n.admin.clear-all', \aniNya\I18n\Controller\AdminController::class)
+        ->post('/i18n/admin/clear-discussion', 'ani-nya-i18n.admin.clear-discussion', \aniNya\I18n\Controller\AdminController::class)
+        ->post('/i18n/admin/fill-all', 'ani-nya-i18n.admin.fill-all', \aniNya\I18n\Controller\AdminController::class)
+        ->post('/i18n/admin/fill-discussion', 'ani-nya-i18n.admin.fill-discussion', \aniNya\I18n\Controller\AdminController::class),
 ];
