@@ -1,8 +1,20 @@
 {
     "name": "u0-ani-nya/ani-nya_i18n",
-    "description": "Auto translate discussions for Flarum",
+    "description": "Native Flarum 2.0 discussion and post auto-translation extension with built-in database translation cache.",
     "type": "flarum-extension",
-    "keywords": ["flarum", "translation", "i18n"],
+    "keywords": [
+        "flarum",
+        "flarum-2",
+        "flarum-extension",
+        "translation",
+        "i18n",
+        "discussion-translator",
+        "translation-cache",
+        "deepl",
+        "openai",
+        "google-translate",
+        "baidu-translate"
+    ],
     "license": "AGPL-3.0-or-later",
     "require": {
         "php": "^8.3",
