@@ -1,4 +1,10 @@
-# ani-nya/flarum-i18n
+# Ani-Nya i18n (Discussion & Post Translator for Flarum 2.0)
+
+
+> **Native Flarum 2.0+ Auto-Translation Extension** with built-in database caching. Translates discussions, post content, titles, user profiles, and shoutbox widgets seamlessly.
+
+[![Flarum 2.0 Compatible](https://img.shields.io/badge/Flarum-2.0%2B-brightgreen)](#)
+[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE)
 
 Auto translate discussions for Flarum 2.x. Translates post titles, content, and UI elements using multiple translation engines. Flarum basic elements is not translated due to we have community launage packs.
 
@@ -106,43 +112,6 @@ Target language is **auto-detected** from each user's language preference (forum
    - User profiles: VDOM injection
    - Shoutbox: DOM injection with periodic polling
 
-## API Endpoints
-
-### POST `/api/i18n/translate`
-
-Translate all content in a discussion.
-
-```json
-{
-  "data": {
-    "type": "i18n-translations",
-    "attributes": {
-      "discussion_id": 1,
-      "target_lang": "ja"
-    }
-  }
-}
-```
-
-**Parameters:**
-- `discussion_id` (required): Discussion to translate
-- `target_lang` (optional): Target language code (auto-detected if omitted)
-
-### POST `/api/i18n/translate` with `raw_text`
-
-Translate arbitrary text (used for Shoutbox):
-
-```json
-{
-  "data": {
-    "type": "i18n-translations",
-    "attributes": {
-      "raw_text": "Hello world",
-      "target_lang": "ja"
-    }
-  }
-}
-```
 
 ## CLI Commands
 
@@ -154,25 +123,6 @@ php flarum i18n:translate {discussion_id} --lang={lang_code}
 php flarum i18n:translate --lang={lang_code}
 ```
 
-## Database
-
-Translations are stored in the `i18n_translations` table:
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `discussion_id` | bigint | Associated discussion |
-| `field` | string | `title`, `content`, or `post_{id}` |
-| `source_lang` | string | Detected source language |
-| `target_lang` | string | Target language code |
-| `source_text` | text | Original text |
-| `translated_text` | text | Translated text |
-| `engine` | string | Engine used (`deepl`, `google`, `baidu`, etc.) |
-
-## Security
-
-- API keys are stored server-side only and never exposed to the frontend
-- Translation API requires user authentication
-- Admin settings (including keys) require admin access
 
 ## License
 
