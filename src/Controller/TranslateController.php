@@ -159,6 +159,9 @@ class TranslateController implements RequestHandlerInterface
 
                 if (empty(trim($plainText))) continue;
 
+                $checkText = preg_replace('/\{I\d+\}/', '', $plainText);
+                if (empty(trim($checkText))) continue;
+
                 $contentResult = $translator->translate(
                     discussionId: $discussion->id,
                     field: 'post_' . $post->id,

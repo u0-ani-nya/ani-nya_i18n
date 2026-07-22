@@ -102,6 +102,10 @@ class AdminController implements RequestHandlerInterface
                 $rawContent = $post->formatContent($request) ?? '';
                 if (empty(trim($rawContent))) continue;
 
+                $checkText = preg_replace('/<[^>]+>/', '', $rawContent);
+                $checkText = preg_replace('/\{I\d+\}/', '', $checkText);
+                if (empty(trim($checkText))) continue;
+
                 $translator->translate(
                     discussionId: $discussion->id,
                     field: 'post_' . $post->id,
